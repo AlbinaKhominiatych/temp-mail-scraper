@@ -26,7 +26,6 @@ def client(mock_scraper_instance):
             yield client
 
 
-# ── Тести для GET /api/email ──────────────────────────────────────────────────
 
 def test_get_current_email_success(client, mock_scraper_instance):
     mock_scraper_instance.get_email.return_value = "test@tempail.com"
@@ -47,7 +46,6 @@ def test_get_current_email_error(client, mock_scraper_instance):
     assert "Browser crashed" in response.json["error"]
 
 
-# ── Тести для GET /api/inbox ──────────────────────────────────────────────────
 
 def test_get_inbox_success(client, mock_scraper_instance):
     mock_inbox = [
@@ -62,7 +60,6 @@ def test_get_inbox_success(client, mock_scraper_instance):
     assert response.json["emails"] == mock_inbox
 
 
-# ── Тести для POST /api/email/refresh ─────────────────────────────────────────
 
 def test_refresh_email_success(client, mock_scraper_instance):
     mock_scraper_instance.refresh.return_value = "new@tempail.com"
@@ -74,7 +71,6 @@ def test_refresh_email_success(client, mock_scraper_instance):
     assert response.json["message"] == "Email refreshed successfully"
 
 
-# ── Тести для GET /api/email/<email_id> ───────────────────────────────────────
 
 def test_get_email_by_id_success(client, mock_scraper_instance):
     mock_email_data = {"id": "123", "body": "Hello World"}
